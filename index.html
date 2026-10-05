@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Portfolio — Websites for local business</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%230B0C0E'/><circle cx='16' cy='16' r='6' fill='none' stroke='%23E0B071' stroke-width='2'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0B0C0E; --panel:#131519; --line:#23262C;
+  --ink:#F2F1EE; --mute:#868C96; --dim:#5A606B;
+  --accent:#E0B071; --accent-dim:#8A6E45;
+  --ok:#5FD08A;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg); color:var(--ink);
+  font-family:'Inter',-apple-system,system-ui,sans-serif;
+  -webkit-font-smoothing:antialiased; line-height:1.55;
+}
+.wrap{max-width:1180px;margin:0 auto;padding:0 28px}
+.serif{font-family:'Instrument Serif',Georgia,serif;font-weight:400}
+
+/* ---------- hero ---------- */
+header{padding:90px 0 60px;border-bottom:1px solid var(--line)}
+.eyebrow{
+  font-size:11px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--accent);font-weight:600;margin-bottom:22px
+}
+h1.title{font-size:clamp(38px,6vw,68px);line-height:1.04;letter-spacing:-.02em}
+h1.title em{font-style:italic;color:var(--accent)}
+.sub{margin-top:22px;max-width:640px;color:var(--mute);font-size:17px}
+
+.stats{display:flex;flex-wrap:wrap;gap:40px;margin-top:48px}
+.stat .n{font-size:40px;line-height:1;letter-spacing:-.02em}
+.stat .l{font-size:12px;color:var(--dim);text-transform:uppercase;letter-spacing:.1em;margin-top:8px}
+
+/* ---------- sections ---------- */
+section{padding:72px 0;border-bottom:1px solid var(--line)}
+section:last-of-type{border-bottom:0}
+.shead{display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:10px}
+.snum{font-size:12px;color:var(--accent-dim);letter-spacing:.14em;font-weight:600}
+h2{font-size:clamp(25px,3.4vw,36px);letter-spacing:-.02em;line-height:1.15}
+.sdesc{color:var(--mute);max-width:640px;margin-top:14px;font-size:16px}
+
+/* ---------- cards ---------- */
+.grid{display:grid;gap:26px;margin-top:44px}
+.grid.c3{grid-template-columns:repeat(auto-fit,minmax(310px,1fr))}
+.grid.c2{grid-template-columns:repeat(auto-fit,minmax(390px,1fr))}
+
+.card{
+  background:var(--panel);border:1px solid var(--line);border-radius:14px;
+  overflow:hidden;display:flex;flex-direction:column;
+  transition:border-color .25s, transform .25s;
+}
+.card:hover{border-color:var(--accent-dim);transform:translateY(-3px)}
+
+.shot{position:relative;background:#000;border-bottom:1px solid var(--line);overflow:hidden}
+.shot .frame{position:relative;width:100%;height:230px;overflow:hidden}
+.shot.tall .frame{height:300px}
+.shot img{
+  display:block;width:100%;height:100%;
+  object-fit:cover;object-position:top center;
+  background:#000;
+}
+.shot .veil{position:absolute;inset:0;cursor:pointer}
+.badge{
+  position:absolute;top:12px;left:12px;z-index:3;
+  background:rgba(11,12,14,.86);backdrop-filter:blur(6px);
+  border:1px solid var(--line);border-radius:100px;
+  font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;
+  padding:5px 11px;color:var(--mute);font-weight:600;
+}
+.badge.live{color:var(--ok);border-color:#2A4635}
+.badge.live::before{
+  content:"";display:inline-block;width:5px;height:5px;border-radius:50%;
+  background:var(--ok);margin-right:6px;vertical-align:middle;
+}
+
+.body{padding:22px;display:flex;flex-direction:column;flex:1}
+.cname{font-size:19px;font-weight:600;letter-spacing:-.01em}
+.cmeta{font-size:12.5px;color:var(--accent-dim);margin-top:5px;letter-spacing:.03em}
+.cdesc{font-size:14.5px;color:var(--mute);margin-top:14px;flex:1}
+
+.tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:18px}
+.tag{
+  font-size:11px;color:var(--dim);border:1px solid var(--line);
+  border-radius:5px;padding:3px 8px;
+}
+
+.visit{
+  margin-top:20px;padding-top:16px;border-top:1px solid var(--line);
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  color:var(--ink);text-decoration:none;font-size:13.5px;font-weight:500;
+}
+.visit .url{color:var(--dim);font-size:12.5px;font-weight:400;word-break:break-all}
+.visit:hover{color:var(--accent)}
+.visit:hover .url{color:var(--accent-dim)}
+.visit .arr{color:var(--accent);flex-shrink:0}
+
+/* ---------- archive (not published) ---------- */
+.arch{display:grid;gap:18px;margin-top:44px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.acard{
+  background:var(--panel);border:1px solid var(--line);border-radius:12px;
+  padding:22px;position:relative;
+}
+.acard .rail{
+  position:absolute;left:0;top:22px;bottom:22px;width:2px;
+  background:var(--accent-dim);opacity:.5;border-radius:2px;
+}
+.acard .cname{font-size:17px}
+.acard .cdesc{margin-top:11px;font-size:14px}
+.astate{
+  display:inline-block;margin-top:16px;font-size:10.5px;font-weight:600;
+  letter-spacing:.09em;text-transform:uppercase;color:var(--dim);
+  border:1px solid var(--line);border-radius:100px;padding:4px 10px;
+}
+
+footer{border-top:1px solid var(--line);padding:30px 0;color:var(--dim);font-size:12.5px}
+
+@media(max-width:640px){
+  header{padding:60px 0 44px}
+  section{padding:54px 0}
+  .stats{gap:28px}
+  .stat .n{font-size:32px}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="eyebrow">Dubai · Web design &amp; build</div>
+    <h1 class="title">The site your<br>competitor <em>already has.</em></h1>
+    <p class="sub">Everything in the first three sections is live right now — real businesses,
+    photos from their own workshops, phone numbers that ring. Click any card to open it.</p>
+
+    <div class="stats">
+      <div class="stat"><div class="n">7</div><div class="l">Live sites</div></div>
+      <div class="stat"><div class="n">5</div><div class="l">Automotive</div></div>
+      <div class="stat"><div class="n">4</div><div class="l">In Al Quoz alone</div></div>
+      <div class="stat"><div class="n">EN·AR·RU</div><div class="l">Languages shipped</div></div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ 1. AL QUOZ TYRE CLUSTER ============ -->
+<section>
+  <div class="wrap">
+    <div class="shead">
+      <span class="snum">01</span>
+      <h2>Three tyre shops. One street.</h2>
+    </div>
+    <p class="sdesc">If you run a garage in Al Quoz, you don't need a portfolio — you need to see
+    what the workshop down the road looks like online. Here are three.</p>
+
+    <div class="grid c3">
+
+      <article class="card">
+        <div class="shot">
+          <span class="badge live">Live · own domain</span>
+          <div class="frame"><img loading="lazy" decoding="async" src="shots/milad.webp?v=1" width="1000" height="625" alt="Milad Jamali Tyres — website"></div>
+          <a class="veil" href="https://miladjamalityres.ae/" target="_blank" rel="noopener" aria-label="Open Milad Jamali Tyres"></a>
+        </div>
+        <div class="body">
+          <div class="cname">Milad Jamali Tyres</div>
+          <div class="cmeta">Al Quoz · Tyres &amp; service · 4.9★</div>
+          <p class="cdesc">Open till 2:30 AM, so the site leads with it. Built around a working
+          tyre-size calculator and a booking form — a driver with a flat finds the size, sees the
+          hours, and books without calling.</p>
+          <div class="tags">
+            <span class="tag">Own .ae domain</span><span class="tag">EN / AR RTL</span>
+            <span class="tag">Size calculator</span><span class="tag">Booking form</span>
+            <span class="tag">18 real photos</span>
+          </div>
+          <a class="visit" href="https://miladjamalityres.ae/" target="_blank" rel="noopener">
+            <span class="url">miladjamalityres.ae</span><span class="arr">↗</span></a>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="shot">
+          <span class="badge live">Live</span>
+          <div class="frame"><img loading="lazy" decoding="async" src="shots/future-tires.webp?v=1" width="1000" height="625" alt="Future Tires Trading — website"></div>
+          <a class="veil" href="https://jakewhite-ui.github.io/future-tires-landing/" target="_blank" rel="noopener" aria-label="Open Future Tires"></a>
+        </div>
+        <div class="body">
+          <div class="cname">Future Tires Trading LLC</div>
+          <div class="cmeta">Al Quoz · Premium tyres &amp; fitting</div>
+          <p class="cdesc">"Premium tyres, fitted in minutes." A brand wall of the names drivers
+          trust, then the workshop itself — because in this trade people buy the garage before
+          they buy the tyre.</p>
+          <div class="tags">
+            <span class="tag">EN / AR</span><span class="tag">Brand wall</span>
+            <span class="tag">Workshop gallery</span><span class="tag">Map &amp; directions</span>
+          </div>
+          <a class="visit" href="https://jakewhite-ui.github.io/future-tires-landing/" target="_blank" rel="noopener">
+            <span class="url">jakewhite-ui.github.io/future-tires-landing</span><span class="arr">↗</span></a>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="shot">
+          <span class="badge live">Live</span>
+          <div class="frame"><img loading="lazy" decoding="async" src="shots/rr-tire.webp?v=1" width="1000" height="625" alt="RR Tire Shop — website"></div>
+          <a class="veil" href="https://jakewhite-ui.github.io/rr-tire-shop/" target="_blank" rel="noopener" aria-label="Open RR Tire Shop"></a>
+        </div>
+        <div class="body">
+          <div class="cname">RR Tire Shop</div>
+          <div class="cmeta">Al Quoz · 24/7 tyres &amp; alignment</div>
+          <p class="cdesc">"The tyre team Dubai calls at 3 AM." Their 302 reviews aren't buried at
+          the bottom — they're the argument. Round-the-clock service is the whole positioning, so
+          the page never lets you forget it.</p>
+          <div class="tags">
+            <span class="tag">302 reviews</span><span class="tag">24/7 angle</span>
+            <span class="tag">Wheel alignment</span><span class="tag">Brand wall</span>
+          </div>
+          <a class="visit" href="https://jakewhite-ui.github.io/rr-tire-shop/" target="_blank" rel="noopener">
+            <span class="url">jakewhite-ui.github.io/rr-tire-shop</span><span class="arr">↗</span></a>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ 2. REST OF AUTOMOTIVE ============ -->
+<section>
+  <div class="wrap">
+    <div class="shead">
+      <span class="snum">02</span>
+      <h2>The rest of the bay.</h2>
+    </div>
+    <p class="sdesc">Same sector, different jobs — tinting and audio, paint protection and
+    ceramic. Both built on the client's own brand and the client's own footage.</p>
+
+    <div class="grid c2">
+
+      <article class="card">
+        <div class="shot tall">
+          <span class="badge live">Live</span>
+          <div class="frame"><img loading="lazy" decoding="async" src="shots/madrid.webp?v=1" width="1000" height="625" alt="Madrid Auto Accessories — website"></div>
+          <a class="veil" href="https://jakewhite-ui.github.io/madrid-auto-accessories/" target="_blank" rel="noopener" aria-label="Open Madrid Auto Accessories"></a>
+        </div>
+        <div class="body">
+          <div class="cname">Madrid Auto Accessories</div>
+          <div class="cmeta">Dubai · Tinting · Audio · Tyres · Batteries</div>
+          <p class="cdesc">Four services under one roof is a hard thing to explain on a shopfront
+          and an easy thing to explain on a page. Built in their existing yellow-and-black brand,
+          straight off their own signage.</p>
+          <div class="tags">
+            <span class="tag">Client's brand colours</span><span class="tag">Service matrix</span>
+            <span class="tag">Booking</span><span class="tag">13 real photos</span>
+          </div>
+          <a class="visit" href="https://jakewhite-ui.github.io/madrid-auto-accessories/" target="_blank" rel="noopener">
+            <span class="url">jakewhite-ui.github.io/madrid-auto-accessories</span><span class="arr">↗</span></a>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="shot tall">
+          <span class="badge live">Live · video</span>
+          <div class="frame"><img loading="lazy" decoding="async" src="shots/exoticshine.webp?v=1" width="1000" height="625" alt="Exotic Shine Motor Services — website"></div>
+          <a class="veil" href="https://jakewhite-ui.github.io/exotic-shine/" target="_blank" rel="noopener" aria-label="Open Exotic Shine"></a>
+        </div>
+        <div class="body">
+          <div class="cname">Exotic Shine Motor Services</div>
+          <div class="cmeta">Ras Al Khor · PPF · Ceramic · Detailing</div>
+          <p class="cdesc">"Protect. Enhance. Elevate." Detailing is sold by the shine, so the page
+          is built on five of their own videos rather than stock renders. Every one of their
+          services is priced on the page — no "contact for quote".</p>
+          <div class="tags">
+            <span class="tag">5 client videos</span><span class="tag">Priced services</span>
+            <span class="tag">Studio tour</span><span class="tag">Testimonials</span>
+          </div>
+          <a class="visit" href="https://jakewhite-ui.github.io/exotic-shine/" target="_blank" rel="noopener">
+            <span class="url">jakewhite-ui.github.io/exotic-shine</span><span class="arr">↗</span></a>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ 3. RANGE ============ -->
+<section>
+  <div class="wrap">
+    <div class="shead">
+      <span class="snum">03</span>
+      <h2>And when it isn't a garage.</h2>
+    </div>
+    <p class="sdesc">Two projects at opposite ends of the market — a late-night cafeteria and a
+    jeweller trading since 1821 — to show the work isn't one template with the logo swapped.</p>
+
+    <div class="grid c2">
+
+      <article class="card">
+        <div class="shot tall">
+          <span class="badge live">Live</span>
+          <div class="frame"><img loading="lazy" decoding="async" src="shots/shawarma.webp?v=1" width="1000" height="625" alt="Shawarma Hut Cafeteria — website"></div>
+          <a class="veil" href="https://jakewhite-ui.github.io/shawarma-hut/" target="_blank" rel="noopener" aria-label="Open Shawarma Hut"></a>
+        </div>
+        <div class="body">
+          <div class="cname">Shawarma Hut Cafeteria</div>
+          <div class="cmeta">Al Quoz · Charcoal shawarma &amp; biryani · Till 2 AM</div>
+          <p class="cdesc">"Big flavour. Fair price. Zero compromise." Food sells on appetite and
+          opening hours, so the menu and the 2 AM close do the heavy lifting — and orders come
+          direct, not through a delivery app taking 25%.</p>
+          <div class="tags">
+            <span class="tag">Full menu</span><span class="tag">Direct orders</span>
+            <span class="tag">Guest reviews</span><span class="tag">12 real photos</span>
+          </div>
+          <a class="visit" href="https://jakewhite-ui.github.io/shawarma-hut/" target="_blank" rel="noopener">
+            <span class="url">jakewhite-ui.github.io/shawarma-hut</span><span class="arr">↗</span></a>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="shot tall">
+          <span class="badge live">Live · trilingual</span>
+          <div class="frame"><img loading="lazy" decoding="async" src="shots/mozafarian.webp?v=1" width="1000" height="625" alt="Mozafarian Fine Jewellers — website"></div>
+          <a class="veil" href="https://jakewhite-ui.github.io/mozafarian-ore/" target="_blank" rel="noopener" aria-label="Open Mozafarian"></a>
+        </div>
+        <div class="body">
+          <div class="cname">Mozafarian — Fine Jewellers</div>
+          <div class="cmeta">Dubai &amp; London · Since 1821 · Seven generations</div>
+          <p class="cdesc">At this end of the market nobody is comparing prices — they're buying a
+          two-hundred-year story. Seven full-bleed films, almost no text, and the heritage carries
+          the page. Shipped in English, Russian and Arabic.</p>
+          <div class="tags">
+            <span class="tag">7 films</span><span class="tag">EN / RU / AR</span>
+            <span class="tag">Heritage narrative</span><span class="tag">Luxury pacing</span>
+          </div>
+          <a class="visit" href="https://jakewhite-ui.github.io/mozafarian-ore/" target="_blank" rel="noopener">
+            <span class="url">jakewhite-ui.github.io/mozafarian-ore</span><span class="arr">↗</span></a>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ 4. NOT PUBLISHED ============ -->
+<section>
+  <div class="wrap">
+    <div class="shead">
+      <span class="snum">04</span>
+      <h2>Built, not published.</h2>
+    </div>
+    <p class="sdesc">Finished work that never went to a public address — the client paused, the
+    deal changed, or it was built as a concept. Shown for range, not as live references.</p>
+
+    <div class="arch">
+
+      <article class="acard">
+        <span class="rail"></span>
+        <div class="cname">Dubriani — Crypto Yacht Charter</div>
+        <div class="cmeta">Dubai · Yacht charter · Crypto payments</div>
+        <p class="cdesc">"Pay in crypto. We settle in dirhams." A charter booking page that walks a
+        crypto-holding client through pricing, accepted coins and the booking flow without ever
+        making it feel like a payments product.</p>
+        <span class="astate">Not published</span>
+      </article>
+
+      <article class="acard">
+        <span class="rail"></span>
+        <div class="cname">Kammer Barbershop</div>
+        <div class="cmeta">Moscow · Premium men's grooming</div>
+        <p class="cdesc">Built to match a real interior — emerald tile, terracotta, oak and brass.
+        Services framed as rituals rather than a price list, with booking as the single action on
+        the page. Russian-language.</p>
+        <span class="astate">Not published</span>
+      </article>
+
+      <article class="acard">
+        <span class="rail"></span>
+        <div class="cname">Bankoro</div>
+        <div class="cmeta">Crypto processing · Fintech</div>
+        <p class="cdesc">An immersive product site for a crypto-processing platform — cinematic
+        camera movement through the interface rather than a static feature grid. The heaviest
+        motion work in the folder.</p>
+        <span class="astate">Not published</span>
+      </article>
+
+      <article class="acard">
+        <span class="rail"></span>
+        <div class="cname">LowChrome</div>
+        <div class="cmeta">Fashion · Streetwear label</div>
+        <p class="cdesc">An awards-grade concept for a fashion label — smooth scroll, staged
+        reveals and product photography treated as editorial. Built to prove the ceiling, not to
+        sell a service.</p>
+        <span class="astate">Not published</span>
+      </article>
+
+      <article class="acard">
+        <span class="rail"></span>
+        <div class="cname">Mid-Florida HVAC</div>
+        <div class="cmeta">Florida, USA · HVAC contractor</div>
+        <p class="cdesc">A full contractor site — service areas, system types, emergency call-outs
+        and quote capture. Completed as a build; the engagement was cancelled before launch.</p>
+        <span class="astate">Not published</span>
+      </article>
+
+      <article class="acard">
+        <span class="rail"></span>
+        <div class="cname">Questline</div>
+        <div class="cmeta">Product concept · Focus-RPG for streamers</div>
+        <p class="cdesc">A product landing for an app that turns a streamer's week into a quest
+        log — the one piece here selling software rather than a local service.</p>
+        <span class="astate">Not published</span>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">Websites for local business — designed, built and shipped live.</div>
+</footer>
+
+</body>
+</html>
