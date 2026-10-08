@@ -143,6 +143,9 @@ h2{font-size:clamp(27px,3.8vw,42px);letter-spacing:-.032em;line-height:1.1;font-
 /* two columns everywhere — four cards land 2×2 instead of an orphaned 3+1,
    and the screenshots stay big enough to read across a counter. */
 .grid{display:grid;gap:24px;margin-top:52px;grid-template-columns:repeat(auto-fit,minmax(420px,1fr))}
+/* lead card — spans the row so an odd card count never leaves an orphan */
+.grid > .card.lead{grid-column:1/-1}
+@media(min-width:901px){.card.lead .frame{height:480px}}
 
 .card{
   background:var(--surface);border:1px solid var(--line);border-radius:var(--r);
@@ -305,8 +308,8 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
     businesses, photos from their own workshops, phone numbers that ring. Tap any card to open it.</p>
 
     <div class="stats" data-reveal>
-      <div class="stat"><div class="n" data-count="8">8</div><div class="l">Live sites</div></div>
-      <div class="stat"><div class="n" data-count="6">6</div><div class="l">Automotive</div></div>
+      <div class="stat"><div class="n" data-count="9">9</div><div class="l">Live sites</div></div>
+      <div class="stat"><div class="n" data-count="7">7</div><div class="l">Automotive</div></div>
       <div class="stat"><div class="n" data-count="5">5</div><div class="l">In Al Quoz alone</div></div>
       <div class="stat"><div class="n sm">EN · AR · RU</div><div class="l">Languages</div></div>
     </div>
@@ -421,11 +424,36 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
     <div class="shead" data-reveal>
       <span class="snum">02 — Automotive</span>
       <h2>The rest of the bay.</h2>
-      <p class="sdesc">Same sector, different jobs — tinting and audio, paint protection and
-      ceramic. Both built on the client's own brand and the client's own footage.</p>
+      <p class="sdesc">Same sector, different jobs — wheels and rim repair, tinting and audio,
+      paint protection and ceramic. All three built on the client's own brand and the client's
+      own footage.</p>
     </div>
 
     <div class="grid">
+
+      <article class="card lead" data-reveal>
+        <div class="shot">
+          <span class="badge"><span class="dot"></span>Live · newest</span>
+          <div class="frame"><img loading="lazy" decoding="async" src="shots/wheelzone.webp?v=1" width="1000" height="625" alt="Wheel Zone Tyre Trading — website"></div>
+          <a class="veil" href="https://jakewhite-ui.github.io/wheel-zone/" target="_blank" rel="noopener" aria-label="Open Wheel Zone Tyre Trading"></a>
+        </div>
+        <div class="body">
+          <div class="cname">Wheel Zone Tyre Trading</div>
+          <div class="cmeta">Ras Al Khor · Rims · Rim repair · Tyres · 4.4★</div>
+          <p class="cdesc">There is a tyre shop on the same street with a thousand more reviews,
+          so this page doesn't fight on tyres — it leads with the wheel. A driver types the three
+          numbers off his own sidewall, gets the rims that actually fit, and sees what changes if
+          he goes an inch bigger. The old site was a stock template with invented reviews and a
+          placeholder phone number; this one is their catalogue and their workshop.</p>
+          <div class="tags">
+            <span class="tag">8 rim styles</span><span class="tag">Size reader</span>
+            <span class="tag">Plus-sizing calculator</span><span class="tag">Rim repair</span>
+            <span class="tag">EN / AR RTL</span>
+          </div>
+          <a class="visit" href="https://jakewhite-ui.github.io/wheel-zone/" target="_blank" rel="noopener">
+            <span class="url">jakewhite-ui.github.io/wheel-zone</span><span class="arr">↗</span></a>
+        </div>
+      </article>
 
       <article class="card" data-reveal>
         <div class="shot">
